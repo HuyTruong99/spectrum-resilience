@@ -8,20 +8,33 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from spectrum_resilience.channel_simulator import simulate_channel
-from spectrum_resilience.config import MissionConfig
-from spectrum_resilience.evaluator import compute_ber, fitness_function
-from spectrum_resilience.receiver import (
-    apply_spreading,
-    demodulate,
-    despread,
-    modulate,
-    transmit_and_receive,
-)
-from spectrum_resilience.waveform_generator import EvolutionaryWaveformGenerator
+try:
+    from spectrum_resilience.channel_simulator import simulate_channel
+    from spectrum_resilience.config import MissionConfig
+    from spectrum_resilience.evaluator import compute_ber, fitness_function
+    from spectrum_resilience.receiver import (
+        apply_spreading,
+        demodulate,
+        despread,
+        modulate,
+        transmit_and_receive,
+    )
+    from spectrum_resilience.waveform_generator import EvolutionaryWaveformGenerator
+except ModuleNotFoundError:
+    from channel_simulator import simulate_channel
+    from config import MissionConfig
+    from evaluator import compute_ber, fitness_function
+    from receiver import (
+        apply_spreading,
+        demodulate,
+        despread,
+        modulate,
+        transmit_and_receive,
+    )
+    from waveform_generator import EvolutionaryWaveformGenerator
 
 
-st.set_page_config(title="Spectrum Resilience", page_icon="📡", layout="wide")
+st.set_page_config(title="Spectrum Resilience", page_icon="\U0001F4E1", layout="wide")
 
 
 def build_config(
@@ -186,7 +199,7 @@ with st.sidebar:
     st.header("Experiment")
     mode = st.radio(
         "Mode",
-        ["Single channel", "All three (AWGN → Fading → Jamming)"],
+        ["Single channel", "All three (AWGN -> Fading -> Jamming)"],
     )
     single_channel = None
     if mode == "Single channel":

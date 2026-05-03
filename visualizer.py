@@ -2,7 +2,10 @@ import numpy as np
 import struct
 import zlib
 
-from spectrum_resilience.receiver import apply_spreading, modulate
+try:
+    from spectrum_resilience.receiver import apply_spreading, modulate
+except ModuleNotFoundError:
+    from receiver import apply_spreading, modulate
 
 
 def _save_rgb_png(path: str, image: np.ndarray):

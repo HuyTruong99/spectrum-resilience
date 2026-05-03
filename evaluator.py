@@ -1,7 +1,11 @@
 import numpy as np
 
-from spectrum_resilience.channel_simulator import simulate_channel
-from spectrum_resilience.receiver import transmit_and_receive
+try:
+    from spectrum_resilience.channel_simulator import simulate_channel
+    from spectrum_resilience.receiver import transmit_and_receive
+except ModuleNotFoundError:
+    from channel_simulator import simulate_channel
+    from receiver import transmit_and_receive
 
 
 def compute_ber(original_bits: np.ndarray, recovered_bits: np.ndarray) -> float:

@@ -7,16 +7,24 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from spectrum_resilience.channel_simulator import simulate_channel
-from spectrum_resilience.config import MissionConfig
-from spectrum_resilience.evaluator import compute_ber, fitness_function
-from spectrum_resilience.receiver import transmit_and_receive
-from spectrum_resilience.visualizer import (
-    plot_evolution,
-    plot_waveform_comparison,
-    print_report,
-)
-from spectrum_resilience.waveform_generator import EvolutionaryWaveformGenerator
+try:
+    from spectrum_resilience.channel_simulator import simulate_channel
+    from spectrum_resilience.config import MissionConfig
+    from spectrum_resilience.evaluator import compute_ber, fitness_function
+    from spectrum_resilience.receiver import transmit_and_receive
+    from spectrum_resilience.visualizer import (
+        plot_evolution,
+        plot_waveform_comparison,
+        print_report,
+    )
+    from spectrum_resilience.waveform_generator import EvolutionaryWaveformGenerator
+except ModuleNotFoundError:
+    from channel_simulator import simulate_channel
+    from config import MissionConfig
+    from evaluator import compute_ber, fitness_function
+    from receiver import transmit_and_receive
+    from visualizer import plot_evolution, plot_waveform_comparison, print_report
+    from waveform_generator import EvolutionaryWaveformGenerator
 
 
 def main():
