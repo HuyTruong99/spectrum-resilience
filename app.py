@@ -34,7 +34,7 @@ except ModuleNotFoundError:
     from waveform_generator import EvolutionaryWaveformGenerator
 
 
-st.set_page_config(title="Spectrum Resilience", page_icon="\U0001F4E1", layout="wide")
+st.set_page_config(page_title="Spectrum Resilience", page_icon="\U0001F4E1", layout="wide")
 
 
 def build_config(
