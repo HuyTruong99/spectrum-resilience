@@ -193,7 +193,7 @@ def run_experiment(config):
     }
 
 
-st.title("Spectrum Resilience")
+st.title("Spectrum Resilience Dashboard")
 
 with st.sidebar:
     st.header("Experiment")
